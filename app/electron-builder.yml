@@ -1,0 +1,41 @@
+appId: com.coursenote.app
+productName: CourseNote
+directories:
+  output: ../release
+  buildResources: build
+files:
+  - dist/**/*
+  - package.json
+extraResources:
+  - from: ../engine
+    to: engine
+    filter:
+      - "**/*.py"
+      - "requirements.txt"
+  - from: ../bin
+    to: bin
+    filter:
+      - "**/*.exe"
+  - from: ../model/whisper-large-v3
+    to: model/whisper-large-v3
+    filter:
+      - "**/*.pt"
+  - from: ../model/SenseNova-U1-8B-MoT
+    to: model/SenseNova-U1-8B-MoT
+    filter:
+      - "**/*.json"
+      - "**/*.txt"
+      - "**/*.gguf"
+  - from: ../model/VoxCPM2
+    to: model/VoxCPM2
+    filter:
+      - "**/*"
+win:
+  target:
+    - target: nsis
+      arch: [x64]
+  icon: build/icon.ico
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
